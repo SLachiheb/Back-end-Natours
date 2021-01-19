@@ -4,7 +4,7 @@ const Tour = require('../models/tourModel');
 //   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`, 'utf8')
 // );
 
-exports.getAllTours = async (req, res, next) => {
+exports.getAllTours = async (req, res) => {
   try {
     const tours = await Tour.find();
 
