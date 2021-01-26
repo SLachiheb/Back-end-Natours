@@ -94,15 +94,19 @@ tourSchema.pre('save', function (next) {
 tourSchema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } });
   this.start = Date.now();
-  console.log(this);
   next();
 });
 tourSchema.post(/^find/, function (docs, next) {
-  // console.log(`Query took ${Date.now() - this.start} milliseconds!`);
-  console.log(this);
-  // console.log(docs);
+  console.log(`Query took ${Date.now() - this.start} milliseconds!`);
   next();
 });
+
+// AGGREGATE MIDDLEWARE
+tourSchema.pre('aggregate', function (next) {
+  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+  next();
+});
+
 const Tour = mongoose.model('Tour', tourSchema);
 
 module.exports = Tour;
