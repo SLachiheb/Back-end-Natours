@@ -3,7 +3,7 @@ const morgan = require('morgan');
 
 const tourRouter = require('./routes/tourRouter');
 const userRouter = require('./routes/userRouter');
-const AppError = require('./Utils/appError');
+const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
 const app = express();
