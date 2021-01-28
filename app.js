@@ -30,6 +30,7 @@ app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server !`, 404));
 });
 
+// Global Mrror Mandling Middleware
 app.use(globalErrorHandler);
 
 module.exports = app;
