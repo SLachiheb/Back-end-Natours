@@ -16,6 +16,9 @@ class APIFeatures {
 
     this.query = this.query.find(JSON.parse(queryStr));
 
+    // this.query = this.query.find({ duration: { $in: ['5', '7'] } });
+    // this.query = this.query.find({ duration: ['5', '7'] });
+
     return this;
   }
 
