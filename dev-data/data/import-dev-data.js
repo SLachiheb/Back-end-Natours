@@ -22,9 +22,7 @@ mongoose
   });
 
 // READ JSON FILE
-const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf8')
-);
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf8'));
 
 // IMMPORT DATA INTO DATABASE
 const importData = async () => {
