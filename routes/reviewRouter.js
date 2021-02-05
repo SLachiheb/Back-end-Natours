@@ -8,6 +8,7 @@ const router = express.Router({
 
 // POST /reviews
 // POST /tour/idTour/reviews
+// GET /tour/idTour/reviews
 
 router
   .route('/')
