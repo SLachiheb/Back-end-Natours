@@ -69,17 +69,20 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
   }
 };
 
-reviewSchema.post('save', function () {
+reviewSchema.post('save', function (doc, next) {
   // This points to current review
   this.constructor.calcAverageRatings(this.tour);
+  next();
 });
 
 reviewSchema.pre(/^findOneAnd/, async function (next) {
   this.r = await this.findOne();
+  next();
 });
 
-reviewSchema.post(/^findOneAnd/, async function () {
+reviewSchema.post(/^findOneAnd/, async function (doc, next) {
   await this.r.constructor.calcAverageRatings(this.r.tour);
+  next();
 });
 const Review = mongoose.model('Review', reviewSchema);
 
