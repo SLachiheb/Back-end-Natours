@@ -137,7 +137,6 @@ exports.getDistances = catchAsync(async (req, res, next) => {
         },
         distanceField: 'distance',
         distanceMultiplier: mulitplier,
-        spherical: true,
       },
     },
     {
