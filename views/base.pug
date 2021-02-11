@@ -1,5 +1,15 @@
-html 
+doctype html 
+html(lang='en')
     head 
-        title Pug Test 
+        link(rel='stylesheet' href='css/style.css')
+        link(rel='shortcut icon' type='image/png' href='img/favicon.png')
+        title Natours #{tour}
     body 
-        h1 The Park Camper
+        h1= tour
+        h2= user.toUpperCase()
+        //- h1 The Park Camper
+
+        - const x = 9;
+        h2= 2 * x
+
+        p Thie is just some Text
