@@ -20,8 +20,6 @@ locations.forEach(loc => {
   const el = document.createElement('div');
   el.className = 'marker';
 
-  console.log(el);
-
   // Add Marker
   new mapboxgl.Marker({
     element: el,
