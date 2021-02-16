@@ -75,6 +75,9 @@ exports.protect = catchAsync(async (req, res, next) => {
   } else if (req.cookies.jwt) {
     // Browser
     token = req.cookies.jwt;
+  } else if (req.cookies.jwt && req.cookies.jwt !== 'loggedout') {
+    // Browser loggout (jwt malformed)
+    token = req.cookies.jwt;
   }
 
   if (!token) {
