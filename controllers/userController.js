@@ -48,10 +48,9 @@ exports.resizeUserPhoto = (req, res, next) => {
 };
 
 const deletePhotoFromServer = async photo => {
-  console.log(photo);
   const path = `${__dirname}/../public/img/users/${photo}`;
   await fs.unlink(path, err => {
-    if (err) return console.log(err);
+    if (err) return next(err);
     console.log('Previous photo has been deleted');
   });
 };
