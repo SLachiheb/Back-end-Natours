@@ -1,4 +1,5 @@
 const multer = require('multer');
+const fs = require('fs');
 const sharp = require('sharp');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
@@ -46,6 +47,15 @@ exports.resizeUserPhoto = (req, res, next) => {
   next();
 };
 
+const deletePhotoFromServer = async photo => {
+  console.log(photo);
+  const path = `${__dirname}/../public/img/users/${photo}`;
+  await fs.unlink(path, err => {
+    if (err) return console.log(err);
+    console.log('Previous photo has been deleted');
+  });
+};
+
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach(el => {
@@ -72,6 +82,8 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   // 2) Filtered out unwanted fields names that are not allowed to be
   const filteredBody = filterObj(req.body, 'name', 'email');
   if (req.file) filteredBody.photo = req.file.filename;
+  if (req.file) await deletePhotoFromServer(req.user.photo);
+
   // 3) update user document
   const updateUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
