@@ -11,5 +11,3 @@ router.get(
 );
 
 module.exports = router;
-
-// http://localhost:3000/tour/the-forest-hiker
